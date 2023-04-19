@@ -1,5 +1,5 @@
 import type { ILineApi } from "./LineApiInterface";
-import * as Line from "@line/bot-sdk";
+import { Client, ClientConfig, validateSignature } from "@line/bot-sdk";
 
 const accessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN!;
 const channelSecret = process.env.LINE_CHANNEL_SECRET!;
@@ -9,17 +9,17 @@ const channelSecret = process.env.LINE_CHANNEL_SECRET!;
  */
 export class LineApi implements ILineApi {
   // LINE API Client
-  private client: Line.Client
+  private client: Client
   
   /**
    * コンストラクタ
    */
   constructor() {
-    const config: Line.ClientConfig = {
+    const config: ClientConfig = {
       channelAccessToken: accessToken,
       channelSecret: channelSecret,
     };
-    this.client = new Line.Client(config);
+    this.client = new Client(config);
   }
 
   /**
@@ -29,7 +29,7 @@ export class LineApi implements ILineApi {
    * @returns 検証が通ればtrue
    */
   verifySignature(body: string, signature: string): boolean {
-    return Line.validateSignature(body, channelSecret, signature);
+    return validateSignature(body, channelSecret, signature);
   }
 
   /**
