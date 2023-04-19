@@ -31,7 +31,7 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
 
   // LIFFに誘導
   const body = JSON.parse(event.body);
-  (body.events as WebhookEvent[]).forEach(ev => {
+  const promises = (body.events as WebhookEvent[]).map(ev => {
     if (ev.type !== "message") { return; }
 
     const msgEv = ev as MessageEvent;
@@ -46,8 +46,10 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
 
     const url = "https://learning-roadmap-generator.web.app?" + params.toString();
     console.log("URL Generated", url);
-    lineApi.postMessage(msgEv.source.userId, url);
+    return lineApi.postMessage(msgEv.source.userId, url);
   });
+
+  await Promise.all(promises);
   
   return {
     statusCode: 200,
