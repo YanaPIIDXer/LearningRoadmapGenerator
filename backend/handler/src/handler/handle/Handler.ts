@@ -7,6 +7,7 @@ import type { WebhookEvent, MessageEvent, TextMessage } from "@line/bot-sdk";
  */
 export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
   if (!event.body) {
+    console.error("Invalid request body.");
     return {
       statusCode: 400,
       body: JSON.stringify({
@@ -19,6 +20,7 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   const lineApi = constructLineApi();
   const signature = event.headers["X-Line-Signature"] ?? "";
   if (!lineApi.verifySignature(event.body, signature)) {
+    console.error("Verify signature failed.");
     return {
       statusCode: 403,
       body: JSON.stringify({
