@@ -1,4 +1,4 @@
-import type { ILineApi } from "./LINEApiInterface";
+import type { ILineApi } from "./LineApiInterface";
 import { ApiMock } from "./ApiMock";
 import { LineApi } from "./LineApi";
 
