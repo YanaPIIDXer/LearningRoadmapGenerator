@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "properties": {
+      "error": {
+          "title": "どのような分野についてのロードマップを出力するべきか不明確な場合、これをtrueにしてroadmapは空配列とする",
+          "type": "boolean"
+      },
+      "field": {
+          "title": "学習したい分野",
+          "type": "string"
+      },
+      "roadmap": {
+          "title": "ロードマップ",
+          "type": "array",
+          "items": {
+              "title": "カテゴリ毎のタスク",
+              "type": "object",
+              "properties": {
+                  "category": {
+                      "title": "カテゴリ名",
+                      "type": "string"
+                  },
+                  "tasks": {
+                      "title": "タスクリスト",
+                      "type": "array",
+                      "items": {
+                          "title": "タスク",
+                          "type": "string"
+                      }
+                  }
+              }
+          }
+      }
+  }
+}
