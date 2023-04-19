@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import RoadmapImage from "@/components/RoadmapImage.vue";
 import sample from "@/assets/sample.json";
-console.log(sample);
 </script>
 
 <template lang="pug">
 .root
-  span {{ sample.field }}
+  RoadmapImage(:item="sample")
 </template>
 
 <style lang="sass" scoped>
