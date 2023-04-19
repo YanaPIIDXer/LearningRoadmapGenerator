@@ -14,10 +14,9 @@ Resources:
           Type: Api
           Properties:
             Path: /handle
-            Method: GET
+            Method: POST
       Environment:
         Variables:
-          SLACK_TOKEN: Dummy
           OPEN_AI_TOKEN: Dummy
     Metadata:
       BuildMethod: esbuild
