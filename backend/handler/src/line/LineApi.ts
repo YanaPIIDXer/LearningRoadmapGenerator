@@ -34,13 +34,10 @@ export class LineApi implements ILineApi {
 
   /**
    * メッセージ送信
-   * @param groupId グループID
+   * @param id ID
    * @param message メッセージ
    */
-  async postMessage(groupId: string, message: string): Promise<void> {
-    const ids = await this.client.getGroupMemberIds(groupId);
-    if (ids.length) {
-      await this.client.pushMessage(ids[0], { type: "text", text: message });
-    }
+  async postMessage(id: string, message: string): Promise<void> {
+    await this.client.pushMessage(id, { type: "text", text: message });
   }
 }
