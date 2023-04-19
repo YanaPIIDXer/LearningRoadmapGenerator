@@ -1,0 +1,19 @@
+{
+  "name": "generator-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.114",
+    "esbuild": "^0.17.17",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  }
+}
