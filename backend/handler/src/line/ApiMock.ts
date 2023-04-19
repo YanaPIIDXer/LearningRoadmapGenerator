@@ -19,10 +19,10 @@ export class ApiMock implements ILineApi {
 
   /**
    * メッセージ送信
-   * @param replyToken リプライトークン
+   * @param groupId グループID
    * @param message メッセージ
    */
-  async postMessage(replyToken: string, message: string): Promise<void> {
+  async postMessage(groupId: string, message: string): Promise<void> {
     console.log("MESSAGE", message);
   }
 }

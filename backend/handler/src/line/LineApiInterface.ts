@@ -12,8 +12,8 @@ export interface ILineApi {
 
   /**
    * メッセージ送信
-   * @param replyToken リプライトークン
+   * @param groupId グループID
    * @param message メッセージ
    */
-  postMessage(replyToken: string, message: string): Promise<void>;
+  postMessage(groupId: string, message: string): Promise<void>;
 }
