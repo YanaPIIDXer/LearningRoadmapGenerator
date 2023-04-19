@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { RoadmapResponse } from "@/interfaces/Roadmap";
-import { toRef, type Ref, defineExpose } from "vue";
+import type { RoadmapResponse } from "../interfaces/Roadmap";
+import { toRef, type Ref } from "vue";
 
 interface Props {
   item: RoadmapResponse;
