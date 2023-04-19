@@ -1,5 +1,5 @@
 import { APIGatewayEvent , APIGatewayProxyResult } from "aws-lambda";
-import { lineApi } from "../../line";
+import { constructLineApi } from "../../line";
 import type { WebhookEvent, MessageEvent, TextMessage } from "@line/bot-sdk";
 
 /**
@@ -16,6 +16,7 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   }
   
   // シグネチャ検証
+  const lineApi = constructLineApi();
   const signature = event.headers["X-Line-Signature"] ?? "";
   if (!lineApi.verifySignature(event.body, signature)) {
     return {
