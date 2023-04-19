@@ -7,7 +7,7 @@ export const useLINE = () => {
   /**
    * LIFFへのログイン
    */
-  const loginLIFF = () => {
+  const loginLIFF = (): void => {
     liff.init({
       liffId: import.meta.env.VITE_APP_LINE_LIFF_ID,
       withLoginOnExternalBrowser: true,
@@ -17,8 +17,21 @@ export const useLINE = () => {
       console.error("Init LIFF Error...");
     });
   }
+
+  /**
+   * メッセージを送信
+   * @param message メッセージ
+   */
+  const sendMessage = async (message: string): Promise<void> => {
+    if (!liff.isInClient()) { throw ("Is not LINE client application. Please use this app in LINE client application."); }
+    await liff.sendMessages([{
+      type: "text",
+      text: message,
+    }]);
+  }
   
   return {
     loginLIFF,
+    sendMessage,
   }
 }
