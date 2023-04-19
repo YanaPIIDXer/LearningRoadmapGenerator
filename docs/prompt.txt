@@ -4,8 +4,9 @@ Please output a JSON format according to the following JSON Schema, based on the
 Unreal Engine4
 
 #Question Answered
-- Which do you prioritize more: theoretical explanations or practical skills?
-  - Theoretical explanations
+- 実践的な演習を重視する
+- 実務や将来のキャリアに活かしたい
+- 短期的な目標を重視する
 
 #JSON Schema
 {
