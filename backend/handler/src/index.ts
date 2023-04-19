@@ -6,8 +6,8 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   try {
     const path = event.path;
     switch (path) {
-      case "/request": return Request.handler(event);
-      case "/handle": return Handle.handler(event);
+      case "/request": return await Request.handler(event);
+      case "/handle": return await Handle.handler(event);
     }
     
     return {
