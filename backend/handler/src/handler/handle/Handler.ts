@@ -18,8 +18,8 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   
   // シグネチャ検証
   const lineApi = constructLineApi();
-  const signature = event.headers["X-Line-Signature"] ?? "";
-  if (!lineApi.verifySignature(event.body, signature)) {
+  const signature = event.headers["X-Line-Signature"];
+  if (signature && !lineApi.verifySignature(event.body, signature)) {
     console.error("Verify signature failed.");
     return {
       statusCode: 403,
