@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { RoadmapResponse } from "@/interfaces/Roadmap";
-import { toRef, type Ref } from "vue";
+import { toRef, type Ref, defineExpose } from "vue";
 
 interface Props {
   item: RoadmapResponse;
@@ -8,6 +8,10 @@ interface Props {
 const props = defineProps<Props>();
 
 const item: Ref<RoadmapResponse> = toRef(props, "item");
+
+defineExpose({
+  item,
+});
 </script>
 
 <template lang="pug">
