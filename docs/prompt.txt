@@ -1,0 +1,48 @@
+Please output a JSON format according to the following JSON Schema, based on the answer to the question, for a roadmap on the following field. If it is unclear what field the roadmap should be for, set "error" to true and leave the "roadmap" as an empty array. Please use Japanese for the output strings.
+
+#Field
+Unreal Engine4
+
+#Question Answered
+- Which do you prioritize more: theoretical explanations or practical skills?
+  - Theoretical explanations
+
+#JSON Schema
+{
+"$schema": "https://json-schema.org/draft/2019-09/schema",
+"type": "object",
+"properties": {
+"error": {
+"title": "If it is unclear what field the roadmap should be for, set this to true and leave the roadmap as an empty array.",
+"type": "boolean"
+},
+"field": {
+"title": "Field of study",
+"type": "string"
+},
+"roadmap": {
+"title": "Roadmap",
+"type": "array",
+"items": {
+"title": "Tasks by category",
+"type": "object",
+"properties": {
+"category": {
+"title": "Category name",
+"type": "string"
+},
+"tasks": {
+"title": "Task list",
+"type": "array",
+"items": {
+"title": "Task",
+"type": "string"
+}
+}
+}
+}
+}
+}
+}
+
+#Output
