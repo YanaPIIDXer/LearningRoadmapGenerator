@@ -18,6 +18,8 @@ Resources:
       Environment:
         Variables:
           EXEC_LOCAL: false
+          LINE_CHANNEL_ACCESS_TOKEN: token
+          LINE_CHANNEL_SECRET: secret
     Metadata:
       BuildMethod: esbuild
       BuildProperties:
