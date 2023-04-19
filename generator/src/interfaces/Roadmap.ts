@@ -10,7 +10,7 @@ export interface RoadmapResponse {
   field: string;
 
   // ロードマップオブジェクト
-  roadmap: Roadmap;
+  roadmap: Roadmap[];
 }
 
 /**
