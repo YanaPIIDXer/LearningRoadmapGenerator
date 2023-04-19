@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import liff from "@line/liff";
+import { useLINE } from "./compositions/Line";
+
+const line = useLINE();
 
 onMounted(() => {
-  liff.init({
-    liffId: import.meta.env.VITE_APP_LINE_LIFF_ID,
-    withLoginOnExternalBrowser: true,
-  }, () => {
-    console.log("Init LIFF Success!");
-  }, () => {
-    console.error("Init LIFF Error...");
-  });
+  line.loginLIFF();
 });
 </script>
 
