@@ -32,10 +32,10 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   // LIFFに誘導
   const body = JSON.parse(event.body);
   const promises = (body.events as WebhookEvent[]).map(ev => {
-    if (ev.type !== "message") { return; }
+    if (ev.type !== "message") { return new Promise<void>(r => { r(); }); }
 
     const msgEv = ev as MessageEvent;
-    if (msgEv.message.type !== "text" || !msgEv.source.userId) { return; }
+    if (msgEv.message.type !== "text" || !msgEv.source.userId) { return new Promise<void>(r => { r(); }); }
     const msg = msgEv.message as TextMessage;
   
     // 学びたい分野が発言されるので、LIFFの方に誘導するURLを生成する
