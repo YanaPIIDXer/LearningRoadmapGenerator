@@ -1,12 +1,10 @@
 Please output a JSON format according to the following JSON Schema, based on the answer to the question, for a roadmap on the following field. If it is unclear what field the roadmap should be for, set "error" to true and leave the "roadmap" as an empty array. Please use Japanese for the output strings.
 
 #Field
-Unreal Engine4
+@@FIELD@@
 
 #Question Answered
-- 実践的な演習を重視する
-- 実務や将来のキャリアに活かしたい
-- 短期的な目標を重視する
+@@ANSWERS@@
 
 #JSON Schema
 {
