@@ -1,5 +1,5 @@
 import type { ILineApi } from "./LineApiInterface";
-import Line from "@line/bot-sdk";
+import * as Line from "@line/bot-sdk";
 
 const accessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN!;
 const channelSecret = process.env.LINE_CHANNEL_SECRET!;
