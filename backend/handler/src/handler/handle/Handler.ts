@@ -44,7 +44,7 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
       userId: msgEv.source.userId,
     });
 
-    const url = "https://learning-roadmap-generator.web.app?" + params.toString();
+    const url = process.env.LIFF_URL + "?" + params.toString();
     console.log("URL Generated", url);
     return lineApi.postMessage(msgEv.source.userId, url);
   });

@@ -25,6 +25,7 @@ Resources:
           EXEC_LOCAL: false
           LINE_CHANNEL_ACCESS_TOKEN: token
           LINE_CHANNEL_SECRET: secret
+          LIFF_URL: https://liff.line.me/1660932490-KmOXp0BL
     Metadata:
       BuildMethod: esbuild
       BuildProperties:
