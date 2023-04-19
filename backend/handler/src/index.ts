@@ -1,22 +1,18 @@
 import { APIGatewayEvent , APIGatewayProxyResult } from "aws-lambda";
-import { lineApi } from "./line";
+import * as Request from "./handler/request/Handler";
+import * as Handle from "./handler/handle/Handler";
 
 export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
-  // シグネチャ検証
-  const signature = event.headers["X-Line-Signature"] ?? "";
-  if (!lineApi.verifySignature(event.body ?? "", signature)) {
-    return {
-      statusCode: 403,
-      body: JSON.stringify({
-        message: "Veryfy signature failed.",
-      }),
-    }
+  const path = event.path;
+  switch (path) {
+    case "/request": return Request.handler(event);
+    case "/handle": return Handle.handler(event);
   }
   
   return {
-    statusCode: 200,
+    statusCode: 404,
     body: JSON.stringify({
-      message: "200 OK",
+      message: "No Routing",
     }),
   }
 }
