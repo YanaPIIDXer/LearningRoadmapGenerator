@@ -15,7 +15,6 @@ export class LineApi implements ILineApi {
    * コンストラクタ
    */
   constructor() {
-
     const config: Line.ClientConfig = {
       channelAccessToken: accessToken,
       channelSecret: channelSecret,
@@ -31,5 +30,14 @@ export class LineApi implements ILineApi {
    */
   verifySignature(body: string, signature: string): boolean {
     return Line.validateSignature(body, channelSecret, signature);
+  }
+
+  /**
+   * メッセージ送信
+   * @param replyToken リプライトークン
+   * @param message メッセージ
+   */
+  async postMessage(replyToken: string, message: string): Promise<void> {
+    await this.client.replyMessage(replyToken, { type: "text", text: message });
   }
 }

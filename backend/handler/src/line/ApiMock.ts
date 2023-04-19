@@ -1,4 +1,4 @@
-import type { ILineApi } from "./LINEApiInterface";
+import type { ILineApi } from "./LineApiInterface";
 
 /**
  * APIのモック
@@ -15,5 +15,14 @@ export class ApiMock implements ILineApi {
    */
   verifySignature(): boolean {
     return true;
-  }  
+  }
+
+  /**
+   * メッセージ送信
+   * @param replyToken リプライトークン
+   * @param message メッセージ
+   */
+  async postMessage(replyToken: string, message: string): Promise<void> {
+    console.log("MESSAGE", message);
+  }
 }
