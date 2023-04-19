@@ -43,7 +43,10 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
       field: msg.text,
       userId: msgEv.source.userId,
     });
-    lineApi.postMessage(msgEv.source.userId, "https://learning-roadmap-generator.web.app?" + params.toString());
+
+    const url = "https://learning-roadmap-generator.web.app?" + params.toString();
+    console.log("URL Generated", url);
+    lineApi.postMessage(msgEv.source.userId, url);
   });
   
   return {
