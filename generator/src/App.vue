@@ -20,6 +20,13 @@ const onSelectedAnswer = (value: string, index: number) => {
   answerList.value[index] = value;
 }
 
+/**
+ * 送信
+ */
+const send = async () => {
+  console.log(answerList.value);
+}
+
 onMounted(() => {
   if (!import.meta.env.DEV) {
     line.loginLIFF();
@@ -40,7 +47,7 @@ defineExpose({
   .answers(v-for="(items, index) in answerItems")
     AnswerList(:answers="items" :index="index" @selected="onSelectedAnswer")
   .footer
-    PrimeButton(label="送信" :disabled="!answerList.every(a => a !== null)")
+    PrimeButton(label="送信" @click="send" :disabled="!answerList.every(a => a !== null)")
 </template>
 
 <style lang="sass" scoped>
