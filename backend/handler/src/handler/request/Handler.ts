@@ -43,10 +43,11 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   // LINEに返却
   let message = `${roadmapResponse.field}の学習ロードマップ\n\n`;
   roadmapResponse.roadmap.forEach(roadmap => {
-    message += `～ ${roadmap.category} ～`;
+    message += `～ ${roadmap.category} ～\n`;
     roadmap.tasks.forEach(task => {
-      message += `・${task}`;
+      message += `・${task}\n`;
     });
+    message += "\n"
   });
 
   const lineApi = new LineApi();
