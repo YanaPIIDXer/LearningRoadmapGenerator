@@ -8,15 +8,17 @@ import openai from "openai";
 export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
   const body = JSON.parse(event.body ?? "{}");
 
-  const field = body.field;
-  const choices = body.choices;
+  const field: string = body.field;
+  const choices: string[] = body.choices;
 
   try {
     const conn = axios.create({
       baseURL: process.env.FRONTEND_ORIGIN_URL,
     });
     const promptResponse = await conn.get("/templates/prompt.txt");
-    const prompt: string = promptResponse.data;
+    const promptBase: string = promptResponse.data;
+    const prompt = promptBase.replace(/@@FIELD@@/, field)
+                             .replace(/@@ANSWERS@@/, choices.reduce((p, c) => p + c));
     console.log(prompt);
   } catch (error) {
     console.error(error);
