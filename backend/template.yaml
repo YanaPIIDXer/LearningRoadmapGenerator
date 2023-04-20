@@ -24,6 +24,7 @@ Resources:
           Properties:
             Path: /handle
             Method: POST
+            RestApiId: !Ref LearningRoadmapGeneratorApi
         Request:
           Type: Api
           Properties:
