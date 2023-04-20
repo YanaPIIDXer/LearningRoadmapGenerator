@@ -14,6 +14,7 @@ const userId = params.get("userId") ?? "Invalid";
 const answerItems: Ref<string[][]> = ref(answers.items);
 type AnswerResult = string | null;
 const answerList: Ref<AnswerResult[]> = ref(new Array(answerItems.value.length).fill(null));
+const isProgress = ref(false);
 
 /**
  * 解答が選択された
@@ -33,15 +34,17 @@ const send = async () => {
   } 
 
   try {
+    isProgress.value = true;
     const conn = axios.create({
       baseURL: import.meta.env.VITE_BACKEND_URL,
       //withCredentials: true,
     });
     await conn.post("/request", body);
-    answerList.value = answerList.value.fill(null);
   } catch (error) {
     alert("Error");
     console.error(error);
+  } finally {
+    isProgress.value = true;
   }
 
   if (!import.meta.env.DEV) {
@@ -71,7 +74,7 @@ defineExpose({
   .answers(v-for="(items, index) in answerItems")
     AnswerList(:answers="items" :index="index" @selected="onSelectedAnswer")
   .footer
-    PrimeButton(label="送信" @click="send" :disabled="!answerList.every(a => a !== null)")
+    PrimeButton(label="送信" @click="send" :disabled="isProgress || !answerList.every(a => a !== null)")
 </template>
 
 <style lang="sass" scoped>
