@@ -1,6 +1,8 @@
 import { APIGatewayEvent , APIGatewayProxyResult } from "aws-lambda";
 import axios from "axios";
 import * as openai from "openai";
+import { RoadmapResponse } from "../../interfaces/Roadmap";
+import { LineApi } from "../../line/LineApi";
 
 /**
  * リクエストに対するハンドラ
@@ -10,6 +12,7 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
 
   const field: string = body.field;
   const choices: string[] = body.choices;
+  const userId: string = body.userId;
 
   try {
     // プロンプト取得
@@ -30,7 +33,25 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
       model: "gpt-3.5-turbo-0301",
       messages: [{ role: "user", content: prompt }],
     });
-    console.log(response.data.choices[0].message?.content);
+    const roadmapResponse: RoadmapResponse = JSON.parse(response.data.choices[0].message?.content ?? "{ error: true }");
+    if (roadmapResponse.error) {
+      return {
+        statusCode: 400,
+        body: "Maybe Unknown field.",
+      }
+    }
+
+    // LINEに返却
+    let message = `${roadmapResponse.field}の学習ロードマップ\n\n`;
+    roadmapResponse.roadmap.forEach(roadmap => {
+      message += `～ ${roadmap.category} ～`;
+      roadmap.tasks.forEach(task => {
+        message += `・${task}`;
+      });
+    });
+
+    const lineApi = new LineApi();
+    await lineApi.postMessage(userId, message);
   } catch (error: any) {
     console.error(error);
     return {
@@ -41,8 +62,6 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      message: "200 OK",
-    }),
+    body: "200 OK",
   }
 }
