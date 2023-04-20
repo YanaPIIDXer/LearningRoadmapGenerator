@@ -34,6 +34,8 @@ const handlerWrap = async (event: APIGatewayEvent): Promise<APIGatewayProxyResul
 }
 
 export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
+  console.log(event.path, "REQUEST BODY", event.body);
+  
   const response = await handlerWrap(event);
   // CORS
   return Object.assign(response, {
