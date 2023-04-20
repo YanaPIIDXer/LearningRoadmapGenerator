@@ -44,7 +44,7 @@ const send = async () => {
     alert("Error");
     console.error(error);
   } finally {
-    isProgress.value = true;
+    isProgress.value = false;
   }
 
   if (!import.meta.env.DEV) {
