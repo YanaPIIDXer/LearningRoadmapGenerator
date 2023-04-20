@@ -9,6 +9,7 @@ import axios from "axios";
 const line = useLINE();
 const params = new URLSearchParams(location.search);
 const field = ref(params.get("field") ?? "Invalid");
+const userId = params.get("userid") ?? "Invalid";
 
 const answerItems: Ref<string[][]> = ref(answers.items);
 type AnswerResult = string | null;
@@ -28,6 +29,7 @@ const send = async () => {
   const body = {
     field: field.value,
     choices: answerList.value,
+    userId: userId,
   } 
 
   try {
@@ -58,6 +60,7 @@ defineExpose({
   AnswerList,
   onSelectedAnswer,
   PrimeButton,
+  send,
 })
 </script>
 
