@@ -25,6 +25,10 @@ const onSelectedAnswer = (value: string, index: number) => {
  */
 const send = async () => {
   console.log(answerList.value);
+
+  if (!import.meta.env.DEV) {
+    line.closeLIFF();
+  }
 }
 
 onMounted(() => {
@@ -38,6 +42,7 @@ defineExpose({
   answerItems,
   AnswerList,
   onSelectedAnswer,
+  PrimeButton,
 })
 </script>
 

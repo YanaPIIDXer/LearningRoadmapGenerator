@@ -19,6 +19,13 @@ export const useLINE = () => {
   }
 
   /**
+   * LIFFを閉じる
+   */
+  const closeLIFF = () => {
+    liff.closeWindow();
+  }
+
+  /**
    * メッセージを送信
    * @param message メッセージ
    */
@@ -32,6 +39,7 @@ export const useLINE = () => {
   
   return {
     loginLIFF,
+    closeLIFF,
     sendMessage,
   }
 }
