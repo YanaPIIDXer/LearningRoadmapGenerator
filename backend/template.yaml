@@ -26,6 +26,7 @@ Resources:
           LINE_CHANNEL_ACCESS_TOKEN: token
           LINE_CHANNEL_SECRET: secret
           LIFF_URL: https://liff.line.me/1660932490-KmOXp0BL
+          FRONTEND_ORIGIN_URL: https://learning-roadmap-generator.web.app
     Metadata:
       BuildMethod: esbuild
       BuildProperties:
