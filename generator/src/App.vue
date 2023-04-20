@@ -4,6 +4,7 @@ import { useLINE } from "./compositions/Line";
 import answers from "@/assets/answers.json";
 import AnswerList from "@/components/AnswerList.vue";
 import PrimeButton from "primevue/button";
+import axios from "axios";
 
 const line = useLINE();
 const params = new URLSearchParams(location.search);
@@ -24,7 +25,21 @@ const onSelectedAnswer = (value: string, index: number) => {
  * 送信
  */
 const send = async () => {
-  console.log(answerList.value);
+  const body = {
+    field: field.value,
+    choices: answerList.value,
+  } 
+
+  try {
+    const conn = axios.create({
+      baseURL: import.meta.env.VITE_BACKEND_URL,
+    });
+    await conn.post("/request", body);
+    answerList.value = answerList.value.fill(null);
+  } catch (error) {
+    alert("Error");
+    console.error(error);
+  }
 
   if (!import.meta.env.DEV) {
     line.closeLIFF();
