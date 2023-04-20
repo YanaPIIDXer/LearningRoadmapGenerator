@@ -35,6 +35,7 @@ const send = async () => {
   try {
     const conn = axios.create({
       baseURL: import.meta.env.VITE_BACKEND_URL,
+      withCredentials: true,
     });
     await conn.post("/request", body);
     answerList.value = answerList.value.fill(null);

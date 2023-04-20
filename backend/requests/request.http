@@ -7,5 +7,5 @@ POST http://localhost:3000/request
     "実践的な学習を重視する",
     "短期的な目標を重視する"
   ],
-  "userId": "hoge",
+  "userId": "hoge"
 }

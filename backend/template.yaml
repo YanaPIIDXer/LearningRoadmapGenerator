@@ -2,6 +2,15 @@ AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 
 Resources:
+  LearningRoadmapGeneratorApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: 'Prod'
+      Cors:
+        AllowOrigin: "'*'"
+        AllowCredentials: true
+        AllowMethods: "'OPTIONS,POST'"
+        AllowHeaders: "'Content-Type,X-CSRF-TOKEN'"
   LearningRoadmapGenerator:
     Type: AWS::Serverless::Function
     Properties:
@@ -20,6 +29,13 @@ Resources:
           Properties:
             Path: /request
             Method: POST
+            RestApiId: !Ref LearningRoadmapGeneratorApi
+        RequestOptions:
+          Type: Api
+          Properties:
+            Path: /request
+            Method: OPTIONS
+            RestApiId: !Ref LearningRoadmapGeneratorApi
       Environment:
         Variables:
           EXEC_LOCAL: false
