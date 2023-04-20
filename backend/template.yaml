@@ -8,7 +8,7 @@ Resources:
       StageName: 'Prod'
       Cors:
         AllowOrigin: "'*'"
-        AllowCredentials: true
+        AllowCredentials: false
         AllowMethods: "'OPTIONS,POST'"
         AllowHeaders: "'Content-Type,X-CSRF-TOKEN'"
   LearningRoadmapGenerator:
