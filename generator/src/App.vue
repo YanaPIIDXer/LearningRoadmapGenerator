@@ -21,7 +21,9 @@ const onSelectedAnswer = (value: string, index: number) => {
 }
 
 onMounted(() => {
-  //line.loginLIFF();
+  if (!import.meta.env.DEV) {
+    line.loginLIFF();
+  }
 });
 
 defineExpose({
