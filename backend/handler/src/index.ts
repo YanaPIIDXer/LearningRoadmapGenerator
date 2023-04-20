@@ -39,7 +39,6 @@ export const handler = async (event: APIGatewayEvent): Promise<APIGatewayProxyRe
   return Object.assign(response, {
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
       "Access-Control-Allow-Methods": "OPTIONS,POST",
       "Access-Control-Allow-Headers": "Content-Type,X-CSRF-TOKEN",
     }
